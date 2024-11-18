@@ -39,9 +39,7 @@ function MessageList() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(
-          `https://thingproxy.freeboard.io/fetch/https://app.rwa.xyz/_next/data/ZXjWkGNdZCGd6nbkgtoTk/index.json`
-        );
+        const response = await axios.get(`https://qiro-assignment-backend.onrender.com/rwa-data`);
 
         const results =
           response?.data.pageProps.privateCreditActiveLoansTimeSeries.results;
@@ -76,7 +74,7 @@ function MessageList() {
           );
           console.log("formattedData", formattedData);
 
-          setChartData(formattedData); 
+          setChartData(formattedData);
         } else {
           console.warn("No results found in API response");
         }
@@ -178,7 +176,7 @@ function MessageList() {
 
         // Once all data has been fetched, update the state
 
-        setProtocols(protocolData); 
+        setProtocols(protocolData);
         console.log("proptocolsData", protocolData);
       } catch (error) {
         console.error("Error fetching protocol data:", error);
@@ -286,9 +284,9 @@ function MessageList() {
                       type="monotone"
                       dataKey={protocol}
                       stroke={color}
-                      fill={color} 
+                      fill={color}
                       strokeWidth={2}
-                      fillOpacity={0.4} 
+                      fillOpacity={0.4}
                     />
                   );
                 })}
