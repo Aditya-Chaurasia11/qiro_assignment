@@ -34,7 +34,6 @@ app.get("/tvl-centrifuge", async (req, res) => {
   }
 });
 
-// Async route to fetch query results from Dune Analytics
 app.get("/graph-mapple", async (req, res) => {
   try {
     // mapple = 3762580
