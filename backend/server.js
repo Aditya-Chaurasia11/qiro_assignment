@@ -3,19 +3,16 @@ const { DuneClient } = require("@duneanalytics/client-sdk");
 const cors = require("cors");
 const axios = require("axios");
 
-
 const app = express();
 const port = 5000;
 
 const dune = new DuneClient("5qSI3LVnsVQFTBmuiUeq5dk01iNmv8nx");
 app.use(cors());
 
-
-
 app.get("/rwa-data", async (req, res) => {
   try {
     const response = await axios.get(
-      "https://thingproxy.freeboard.io/fetch/https://app.rwa.xyz/_next/data/ZXjWkGNdZCGd6nbkgtoTk/index.json"
+      "https://thingproxy.freeboard.io/fetch/https://app.rwa.xyz/_next/data/ZXjWkGNdZCGd6nbkgtoTk"
     );
     res.json(response.data); // Forward the data back to the client
   } catch (error) {
@@ -23,7 +20,6 @@ app.get("/rwa-data", async (req, res) => {
     res.status(500).send("Error fetching data from the API");
   }
 });
-
 
 app.get("/tvl-mapple", async (req, res) => {
   try {
