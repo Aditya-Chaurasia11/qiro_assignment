@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import "./contactInfo.css";
-import DuneComp from "./DuneComp";
-import DuneMapleComp from "./DuneMapleComp";
-import DefiLlamaComp from "./DefiLlamaComp";
+import "./protocol.css";
+import DuneComp from "../components/DuneComp";
+import DuneMapleComp from "../components/DuneMapleComp";
+import DefiLlamaComp from "../components/DefiLlamaComp";
 
 function ContactInfo() {
   const location = useLocation();
   const [protocol, setProtocol] = useState(null);
 
-  // Fetch data from location.state
   useEffect(() => {
     if (location.state && location.state.protocol) {
       setProtocol(location.state.protocol);

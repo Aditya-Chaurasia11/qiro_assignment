@@ -11,7 +11,6 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-// Custom Tooltip Component
 const CustomTooltip = ({ active, payload, label }) => {
   if (active && payload && payload.length) {
     return (
@@ -46,7 +45,9 @@ function DuneMapleComp() {
 
   const getData = useCallback(async () => {
     try {
-      const response = await axios.get("http://localhost:5000/graph-mapple");
+      const response = await axios.get(
+        "https://qiro-assignment-backend.onrender.com/graph-mapple"
+      );
       const rows = response?.data?.result?.rows || [];
 
       if (rows.length === 0) {
@@ -56,31 +57,26 @@ function DuneMapleComp() {
 
       console.log("API Data:", rows);
 
-      // Get unique pool names from the dataset
       const uniquePools = Array.from(new Set(rows.map((row) => row.pool_name)));
 
-      // Group data by date and pool name
       const groupedData = {};
 
       uniquePools.forEach((poolName) => {
         const filteredRows = rows.filter((row) => row.pool_name === poolName);
 
         filteredRows.forEach((row) => {
-          const date = row.date.split(" ")[0]; // Extract date (e.g., 2023-01-01)
+          const date = row.date.split(" ")[0]; 
           if (!groupedData[date]) groupedData[date] = { date };
           groupedData[date][poolName] = row.tvl || 0;
         });
       });
 
-      // Convert grouped data to array for Recharts and sort by date
       const chartReadyData = Object.values(groupedData).sort(
         (a, b) => new Date(a.date) - new Date(b.date)
       );
 
-      // Reverse the data so the timeline starts from the earliest date
       setChartData(chartReadyData);
 
-      // Set TVL values for each pool
       const tvlByPool = uniquePools.reduce((acc, pool) => {
         const latestRow = rows.filter((row) => row.pool_name === pool).pop();
         acc[pool] = latestRow?.tvl || 0;
@@ -99,7 +95,9 @@ function DuneMapleComp() {
 
   const getTvl = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/tvl-mapple");
+      const response = await axios.get(
+        "https://qiro-assignment-backend.onrender.com/tvl-mapple"
+      );
       console.log(response?.data.result.rows[0].total_tvl);
       setTvl(response?.data.result.rows[0].total_tvl);
     } catch (error) {

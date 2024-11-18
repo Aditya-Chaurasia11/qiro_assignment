@@ -1,7 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-
-import "./contactList.css";
+import "./home.css";
 
 function ContactList() {
   const navigate = useNavigate();

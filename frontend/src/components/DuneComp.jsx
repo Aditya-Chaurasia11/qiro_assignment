@@ -11,7 +11,6 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-// Custom Tooltip Component
 const CustomTooltip = ({ active, payload, label }) => {
   if (active && payload && payload.length) {
     return (
@@ -48,7 +47,7 @@ function DuneComp() {
   const getData = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:5000/graph-centrifuge"
+        "https://qiro-assignment-backend.onrender.com/graph-centrifuge"
       );
       const rows = response?.data?.result?.rows;
       setTvl(rows[0]?.total_TVL);
@@ -58,7 +57,6 @@ function DuneComp() {
         return;
       }
 
-      // Generate unique colors for each pool
       const uniquePools = Array.from(new Set(rows.map((row) => row.pool_name)));
       const colors = {};
       uniquePools.forEach((pool, index) => {
@@ -66,27 +64,23 @@ function DuneComp() {
       });
       setPoolColors(colors);
 
-      // Group data by time
       const groupedData = rows.reduce((acc, row) => {
         const poolName = row.pool_name || "Unknown";
         const time = row.time;
         const TVL = row.TVL || 0;
 
-        if (!acc[time]) acc[time] = { time }; // Initialize time object if it doesn't exist
-        acc[time][poolName] = TVL; // Add TVL data for the pool
+        if (!acc[time]) acc[time] = { time };
+        acc[time][poolName] = TVL; 
 
         return acc;
       }, {});
 
-      // Convert grouped data to array for Recharts
       const chartReadyData = Object.values(groupedData);
 
-      // Make the data cumulative
       const cumulativeData = chartReadyData.map((entry) => {
         const cumulativeEntry = { ...entry };
         let cumulativeTVL = 0;
 
-        // Calculate cumulative TVL for each pool
         uniquePools.forEach((pool) => {
           cumulativeTVL += cumulativeEntry[pool] || 0;
           cumulativeEntry[pool] = cumulativeTVL;
@@ -107,7 +101,7 @@ function DuneComp() {
 
   const getTvl = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/tvl-centrifuge");
+      const response = await axios.get("https://qiro-assignment-backend.onrender.com/tvl-centrifuge");
       console.log(
         "response",
         response?.data.result.rows[0].cumulative_origination

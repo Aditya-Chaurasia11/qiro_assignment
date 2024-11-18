@@ -1,8 +1,8 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import ContactList from "./components/ContactList";
-import ContactInfo from "./components/ContactInfo";
-import MessageList from "./components/MessageList";
+import Home from "./Pages/Home";
+import Protocol from "./Pages/Protocol";
+import TVLList from "./Pages/TVLList";
 import Navbar from "./components/Navbar";
 
 function App() {
@@ -10,9 +10,9 @@ function App() {
     <BrowserRouter>
       <Navbar />
       <Routes>
-        <Route path="/" element={<ContactList />} />
-        <Route path="/protocol/:id" element={<ContactInfo />} />
-        <Route path="/tvl" element={<MessageList />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/protocol/:id" element={<Protocol />} />
+        <Route path="/tvl" element={<TVLList />} />
       </Routes>
     </BrowserRouter>
   );

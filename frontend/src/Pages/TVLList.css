@@ -9,7 +9,13 @@
 }
 
 .messageList_body {
+  margin-top: 30px;
+}
+
+.chart_body{
   margin-top: 50px;
+  font-size: 25px;
+  font-weight: 600;
 }
 
 .messageList_item {
@@ -19,6 +25,18 @@
 .protocol_heading {
   display: flex;
   align-items: center;
+}
+
+.messageList_subheading2 {
+  margin-top: 50px;
+  font-size: 25px;
+  font-weight: 600;
+}
+
+.messageList_subheading{
+  margin-top: 50px;
+  font-size: 25px;
+  font-weight: 600;
 }
 
 .protocol_heading p {
