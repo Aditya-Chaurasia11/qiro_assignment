@@ -21,6 +21,7 @@ function ContactList() {
     { name: "Union Protocol", source: "Defillama" },
     { name: "Untangled", source: "Defillama" },
     { name: "ALTA Finance", source: "Defillama" },
+    { name: "Syrup.fi", source: "Defillama" },
   ];
 
   const handleNavigateClick = async (protocol) => {

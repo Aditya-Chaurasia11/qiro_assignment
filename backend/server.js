@@ -12,7 +12,7 @@ app.use(cors());
 app.get("/rwa-data", async (req, res) => {
   try {
     const response = await axios.get(
-      "https://thingproxy.freeboard.io/fetch/https://app.rwa.xyz/_next/data/ZXjWkGNdZCGd6nbkgtoTk"
+      "https://thingproxy.freeboard.io/fetch/https://app.rwa.xyz/_next/data/0Aq5zIM84oSJoLUIoLVml"
     );
     res.json(response.data); // Forward the data back to the client
   } catch (error) {
